@@ -1,10 +1,11 @@
 import { AddNewItem } from "./components/AddNewItem";
 import { Column } from "./components/Column";
+import { addList } from "./state/actions";
 import { useAppState } from "./state/AppSateContext";
 import { AppContainer } from "./styles";
 
 export const App = () => {
-  const { lists } = useAppState();
+  const { lists, dispatch } = useAppState();
 
   return (
     <AppContainer>
@@ -13,7 +14,7 @@ export const App = () => {
       ))}
       <AddNewItem
         toggleButtonText="+ Add another list"
-        onAdd={() => console.log("Item created")}
+        onAdd={(text) => dispatch(addList(text))}
       />
     </AppContainer>
   );
