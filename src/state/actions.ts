@@ -1,7 +1,28 @@
+import { DragItem } from '../components/DragItem';
+
 export type Action = 
-  | { type: "ADD_LIST"; payload: string }
-  | { type: "ADD_TASK"; payload: { text: string; listId: string } }
-  | { type: "MOVE_LIST"; payload: { draggedId: string; hoverId: string }}
+  | { 
+    type: "ADD_LIST"
+    payload: string 
+  }
+  | { 
+    type: "ADD_TASK"
+    payload: { 
+      text: string
+      listId: string 
+    } 
+  }
+  | { 
+    type: "MOVE_LIST"
+    payload: { 
+      draggedId: string
+      hoverId: string 
+    }
+  }
+  | { 
+    type: "SET_DRAGGED_ITEM"
+    payload: DragItem | null
+  }
 
 
 export const addTask = (text: string, listId: string): Action => ({
@@ -23,4 +44,9 @@ export const moveList = (draggedId: string, hoverId: string): Action => ({
     draggedId,
     hoverId
   }
+})
+
+export const setDraggedItem = (draggedItem: DragItem | null) : Action => ({
+  type: "SET_DRAGGED_ITEM",
+  payload: draggedItem
 })
